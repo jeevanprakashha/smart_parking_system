@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+ 
+<head>
+    <title> Parking Lot Second Floor</title>
+
+    <link rel="stylesheet"
+          href="/public/css/floors2.css">
+
+    <script>
+        function unbookSlot(slotNumber, image) {
+            // Remove the booking information from sessionStorage
+            //sessionStorage.removeItem(`slot${slotNumber}`);
+            //sessionStorage.removeItem(`image${slotNumber}`);
+
+            // Reset the image source to the default value
+            //image.src = "";
+
+            // Re-enable clicks on the slot
+            image.onclick = function () {
+                console.log("The slot is already Booked")
+            };
+        }
+z
+        // Function to check if the slot is already booked
+        function isSlotBooked(slotNumber) {
+            return sessionStorage.getItem(`slot${slotNumber}`) === "booked";
+        }
+
+        // Function to book the slot permanently
+        function bookSlot(slotNumber, image) {
+            
+                // Set the image source to indicate booking
+                image.src = "images/car.png";
+
+                // Store the booking information in sessionStorage
+                sessionStorage.setItem(`slot${slotNumber}`, "booked");
+                sessionStorage.setItem(`image${slotNumber}`, "images/car.png");
+
+                // Optionally, you can disable further clicks on the booked slot
+                image.onclick = function () {
+                    alert("This slot is already booked!");
+                };
+            
+        }
+
+        // Event listener for image clicks
+        document.addEventListener("DOMContentLoaded", function () {
+            // Fetch all images with the class "gap"
+            var images = document.querySelectorAll('.gap');
+
+            // Add click event listener to each image
+            images.forEach(function (image) {
+                image.addEventListener('click', function () {
+                    // Extract the slot number from the image value
+                    var slotNumber = image.value;
+
+                    // If the slot is already booked, unbook it; otherwise, book it
+                    if (isSlotBooked(slotNumber)) {
+                        unbookSlot(slotNumber, image);
+                    } else {
+                        bookSlot(slotNumber, image);
+                    }
+                });
+            });
+
+            
+
+            // Restore booked slots on page load
+            images.forEach(function (image) {
+                var slotNumber = image.value;
+                if (isSlotBooked(slotNumber)) {
+                    image.src = sessionStorage.getItem(`image${slotNumber}`);
+                }
+            });
+
+            
+        });
+
+    </script>
+    
+</head>
+
+<body>
+
+    <header>
+        <div class = "title">
+            <a href = "indexpark.html">Star Parking lot</a>
+        </div>
+
+        <div class = "nav">
+        <div class = "tgl-btn">
+            <div class="slider"></div>
+            <div class = "nav-items">
+                <a href="floors1.html" class="link">First Floor</a>
+                <a href="floors2.html" class="link">Second Floor</a>
+                <a href="floors3.html" class="link">Third Floor</a>
+            </div>
+        </div>
+        </div>
+    </header>
+
+   <section class = "home">
+
+
+        <div class = "content">
+            <input type = "image" scr = "images/pl1.png"  width = "50" height = "200"  class ="gap" value = "Slot 2.1" onclick="booked(this)" /></a>
+            <input type = "image" scr = "images/pl1.png"  width = "50" height = "200"  class ="gap" value = "Slot 2.2" onclick="booked(this)" /></a>
+            <input type = "image" scr = "images/pl1.png"  width = "50" height = "200"  class ="gap" value = "Slot 2.3" onclick="booked(this)" /></a>
+            <input type = "image" scr = "images/pl1.png"  width = "50" height = "200"  class ="gap" value = "Slot 2.4" onclick="booked(this)" /></a>
+            <input type = "image" scr = "images/pl1.png"  width = "50" height = "200"  class ="gap" value = "Slot 2.5" onclick="booked(this)" /></a>
+            <input type = "image" scr = "images/pl1.png"  width = "50" height = "200"  class ="gap" value = "Slot 2.6" onclick="booked(this)" /></a>
+            <input type = "image" scr = "images/pl1.png"  width = "50" height = "200"  class ="gap" value = "Slot 2.7" onclick="booked(this)" /></a>
+            <input type = "image" scr = "images/pl1.png"  width = "50" height = "200"  class ="gap" value = "Slot 2.8" onclick="booked(this)" /></a>
+            <input type = "image" scr = "images/pl1.png"  width = "50" height = "200"  class ="gap" value = "Slot 2.9" onclick="booked(this)" /></a>
+            <input type = "image" scr = "images/pl1.png"  width = "50" height = "200"  class ="gap" value = "Slot 2.10" onclick="booked(this)" /></a>
+            <input type = "image" scr = "images/pl1.png"  width = "50" height = "200"  class ="gap" value = "Slot 2.11" onclick="booked(this)" /></a>
+            <input type = "image" scr = "images/pl1.png"  width = "50" height = "200"  class ="gap" value = "Slot 2.12" onclick="booked(this)" /></a>
+            <input type = "image" scr = "images/pl1.png"  width = "50" height = "200"  class ="gap" value = "Slot 2.13" onclick="booked(this)" /></a>
+            <input type = "image" scr = "images/pl1.png"  width = "50" height = "200"  class ="gap" value = "Slot 2.14" onclick="booked(this)" /></a>
+            <input type = "image" scr = "images/pl1.png"  width = "50" height = "200"  class ="gap" value = "Slot 2.15" onclick="booked(this)" /></a>
+            <input type = "image" scr = "images/pl1.png"  width = "50" height = "200"  class ="gap" value = "Slot 2.16" onclick="booked(this)" /></a>
+            <input type = "image" scr = "images/pl1.png"  width = "50" height = "200"  class ="gap" value = "Slot 2.17" onclick="booked(this)" /></a>
+            <input type = "image" scr = "images/pl1.png"  width = "50" height = "200"  class ="gap" value = "Slot 2.18" onclick="booked(this)" /></a>
+            <input type = "image" scr = "images/pl1.png"  width = "50" height = "200"  class ="gap" value = "Slot 2.19" onclick="booked(this)" /></a>
+            <input type = "image" scr = "images/pl1.png"  width = "50" height = "200"  class ="gap" value = "Slot 2.20" onclick="booked(this)" /></a>
+            <input type = "image" scr = "images/pl1.png"  width = "50" height = "200"  class ="gap" value = "Slot 2.21" onclick="booked(this)" /></a>
+    
+        <div class = "road"></div>
+
+            <input type = "image" scr = "images/pl1.png"  width = "50" height = "200"  class ="gap" value = "Slot 2.22" onclick="booked(this)" /></a>
+            <input type = "image" scr = "images/pl1.png"  width = "50" height = "200"  class ="gap" value = "Slot 2.23" onclick="booked(this)" /></a>
+            <input type = "image" scr = "images/pl1.png"  width = "50" height = "200"  class ="gap" value = "Slot 2.24" onclick="booked(this)" /></a>
+            <input type = "image" scr = "images/pl1.png"  width = "50" height = "200"  class ="gap" value = "Slot 2.25" onclick="booked(this)" /></a>
+            <input type = "image" scr = "images/pl1.png"  width = "50" height = "200"  class ="gap" value = "Slot 2.25" onclick="booked(this)" /></a>
+            <input type = "image" scr = "images/pl1.png"  width = "50" height = "200"  class ="gap" value = "Slot 2.26" onclick="booked(this)" /></a>
+            <input type = "image" scr = "images/pl1.png"  width = "50" height = "200"  class ="gap" value = "Slot 2.27" onclick="booked(this)" /></a>
+            <input type = "image" scr = "images/pl1.png"  width = "50" height = "200"  class ="gap" value = "Slot 2.28" onclick="booked(this)" /></a>
+            <input type = "image" scr = "images/pl1.png"  width = "50" height = "200"  class ="gap" value = "Slot 2.29" onclick="booked(this)" /></a>
+            <input type = "image" scr = "images/pl1.png"  width = "50" height = "200"  class ="gap" value = "Slot 2.30" onclick="booked(this)" /></a>
+            <input type = "image" scr = "images/pl1.png"  width = "50" height = "200"  class ="gap" value = "Slot 2.31" onclick="booked(this)" /></a>
+            <input type = "image" scr = "images/pl1.png"  width = "50" height = "200"  class ="gap" value = "Slot 2.32" onclick="booked(this)" /></a>
+            <input type = "image" scr = "images/pl1.png"  width = "50" height = "200"  class ="gap" value = "Slot 2.33" onclick="booked(this)" /></a>
+            <input type = "image" scr = "images/pl1.png"  width = "50" height = "200"  class ="gap" value = "Slot 2.34" onclick="booked(this)" /></a>
+            <input type = "image" scr = "images/pl1.png"  width = "50" height = "200"  class ="gap" value = "Slot 2.35" onclick="booked(this)" /></a>
+            <input type = "image" scr = "images/pl1.png"  width = "50" height = "200"  class ="gap" value = "Slot 2.36" onclick="booked(this)" /></a>
+            <input type = "image" scr = "images/pl1.png"  width = "50" height = "200"  class ="gap" value = "Slot 2.37" onclick="booked(this)" /></a>
+            <input type = "image" scr = "images/pl1.png"  width = "50" height = "200"  class ="gap" value = "Slot 2.38" onclick="booked(this)" /></a>
+            <input type = "image" scr = "images/pl1.png"  width = "50" height = "200"  class ="gap" value = "Slot 2.39" onclick="booked(this)" /></a>
+            <input type = "image" scr = "images/pl1.png"  width = "50" height = "200"  class ="gap" value = "Slot 2.40" onclick="booked(this)" /></a>
+            <input type = "image" scr = "images/pl1.png"  width = "50" height = "200"  class ="gap" value = "Slot 2.41" onclick="booked(this)" /></a>
+            
+        </div>
+
+   </section>
+
+
+   
+
+</body>

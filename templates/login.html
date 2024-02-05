@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Parking System Login</title>
+  <link rel="stylesheet" href="/static/css/login.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofGJopCU6Up/vXE79N/6Zjnv8E+OK1QIx" crossorigin="anonymous">
+</head>
+
+<body>
+
+  <div class="flash-message-container" id="flashMessageContainer">
+    <div class="flash-message" id="flashMessage"></div>
+    <button class="flash-message-button" id="flashMessageButton">OK</button>
+  </div>
+
+  <header>
+
+    <div class="logo">
+      <img src="/static/images/spl_logo.png" alt="Logo">
+    </div>
+
+    <div class="nav">
+      <div class="slider"></div>
+      <div class="nav-items" id="navItems">
+
+        <a href="#1" class="gap">  <i class='bx bx-home bx-flashing' style='color: #ffffff; font-size: 22px; transform: scale(2);'></i></a>
+        <a href="http://127.0.0.1:5000/register" class="gap">  <i class='bx bx-registered bx-flashing' style='color: #ffffff; font-size: 22px; transform: scale(2);'></i></a>
+        <a href="#5" class="gap">  <i class='bx bxs-cog bx-flashing' style='color: #ffffff; font-size: 22px; transform: scale(2);'></i></a>
+        <a href="#2" class="gap">  <i class='bx bx-info-circle bx-flashing' style='color: #ffffff; font-size: 22px; transform: scale(2);'></i></a>
+        <a href="#3" class="gap">  <i class='bx bxs-contact bx-flashing' style='color: #ffffff; font-size: 22px; transform: scale(2);'></i></a>
+
+      </div>
+    </div>
+
+  </header>
+
+  <div class="login-container">
+    <div class="login-box">
+      <h1>Log In</h1>
+      <div class="content">
+        <form action="" method="post">
+          <input type="text" id="username" name="username" required placeholder="Username" class="User">
+          <input type="password" id="password" name="password" required placeholder="Password" class="pass">
+          <button type="submit">Login</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <video class="video-slide" src="/static/images/parkvid.mp4" autoplay muted loop></video>
+
+  <script>
+    var navItems = document.getElementById('navItems');
+
+    function updateNavigation() {
+      var screenWidth = window.innerWidth;
+
+      // Hide "Info" and "Contact" as screen width reduces
+      if (screenWidth < 768) {
+        navItems.children[3].style.display = 'none'; // Hide "Info"
+        navItems.children[4].style.display = 'none'; // Hide "Contact"
+      } else {
+        // Show all navigation items
+        for (var i = 0; i < navItems.children.length; i++) {
+          navItems.children[i].style.display = 'inline-block';
+        }
+      }
+    }
+
+    // Initial update on page load
+    updateNavigation();
+
+    // Update on window resize
+    window.addEventListener('resize', updateNavigation);
+  </script>
+
+  <script>
+    var errorMessage = "{{ get_flashed_messages(with_categories=true, category_filter=['error']) | first }}";
+
+    function showFlashMessage(message) {
+      var flashMessageElement = document.getElementById("flashMessage");
+      flashMessageElement.innerText = message;
+      flashMessageElement.style.display = "block";
+
+      // Add event listener to hide the flash message when clicked
+      var closeButton = document.getElementById("flashMessageButton");
+      closeButton.addEventListener("click", function () {
+        console.log("OK button clicked");
+        closeFlashMessage();
+      });
+    }
+
+    function closeFlashMessage() {
+      var flashMessageContainer = document.getElementById("flashMessageContainer");
+      flashMessageContainer.style.display = "none";
+      console.log("Flash message closed");
+    }
+
+    var flashedMessages = {{ flashed_messages|tojson|safe }};
+
+    document.addEventListener("DOMContentLoaded", function () {
+      // Always display the flash message container
+      var flashMessageContainer = document.getElementById("flashMessageContainer");
+      flashMessageContainer.style.display = "block";
+
+      // Check if there are any flashed messages
+      if (flashedMessages.length > 0) {
+        // Display the flash message
+        showFlashMessage(flashedMessages[0][1]);  // Display the first flashed message
+      } else {
+        // Hide the flash message container if there are no flashed messages
+        closeFlashMessage();
+      }
+    });
+  </script>
+
+</body>
+
+</html>

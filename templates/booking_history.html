@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>User Account</title>
+    <link rel="stylesheet" href="/static/css/account.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+
+    <header>
+        <div class="title">
+            <h1>Star Parking lot</h1>
+        </div>
+
+        <div class="nav">
+            <div class="slider"></div>
+            <div class="nav-items">
+                <a href="/floor1">First Floor</a>
+                <a href="/flor2">Second Floor</a>
+                <a href="/floor3">Third Floor</a>
+            </div>
+        </div>
+    </header>
+
+    <video class="video-slide" autoplay muted loop>
+        <source src="/static/images/parkvid2.mp4" type="video/mp4">
+    </video>
+
+    <div class="content">
+        <h1>Your Booking History</h1>
+        <table class="history-table">
+            <tr>
+                <th>Slot Number</th>
+                <th>Booked From</th>
+                <th>To</th>
+            </tr>
+            {% for slot in history_slots %}
+            <tr>
+                <td>{{ slot.slot_number }}</td>
+                <td>{{ slot.booking_time.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                <td>{{ slot.end_time.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a href="/index" class="back-button">Back to Dashboard</a>
+    </div>
+
+    <script>
+        function logout() {
+            // Implementation for logout
+            // Redirect to the login page
+            window.location.href = 'login.html';
+        }
+    </script>
+
+</body>
+</html>

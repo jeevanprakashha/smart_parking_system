@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+ 
+<head>
+    <title> Indexpage</title>
+
+    <link rel="stylesheet"
+          href="/static/css/indexpark.css">
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <script>
+        function booked(image){
+            image.src = "images/car.png"
+        };
+
+
+        function logout() {
+            // Clear the session-like storage for demo purposes
+            localStorage.removeItem('loggedIn');
+            // Redirect to the login page
+            window.location.href = 'login.html';
+        }
+        
+    </script>
+    
+</head>
+
+<body>
+
+    <header>
+
+        <div class = "title">
+            <h1>Star Parking lot</h1>
+        </div>
+
+        <div class = "nav">
+            <div class="slider"></div>
+            <div class = "nav-items">
+                <a href="/floor1">First Floor</a>
+                <a href="/floor2">Second Floor</a>
+                <a href="/floor3">Third Floor</a>
+                
+            </div>
+        </div>
+
+    </header>
+
+    <video class="video-slide" src = "/static/images/parkvid2.mp4" autoplay muted loop></video>
+    <div class = "sidebar">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        
+
+        <div class = "logo_content">
+            <div class = "logo">
+                <div class="logo_name"> Dashboard</div>
+            </div>
+            <i class='bx bx-menu' id = "btn"></i>
+        </div>
+       
+        <ul class="nav_list">
+
+            <li>
+                <a href = "/account">
+                    <i class='bx bx-user' ></i>
+                    <span class="links_name">User</span>
+                </a>
+            </li>
+
+            <li>
+                <a href = "/slot">
+                    <i class='bx bxs-parking' ></i>
+                    <span class="links_name">Slot</span>
+                </a>
+            </li>
+
+            <li>
+                <a href = "/calculate_amount">
+                    <i class='bx bx-coin-stack' ></i>
+                    <span class="links_name">Amount</span>
+                </a>
+            </li>
+
+            <li>
+                <a href = "/cancel_bookings">
+                    <i class='bx bx-x-circle' ></i>
+                    <span class="links_name"> Cancel</span>
+                </a>
+            </li>  
+
+            <li>
+                <a href = "/booking_history">
+                    <i class='bx bx-x-circle' ></i>
+                    <span class="links_name"> Bookings</span>
+                </a>
+            </li>  
+            
+            <li>
+                <a href = "/logout">
+                    <i class='bx bx-log-out' ></i>
+                    <span class="links_name">Log Out</span>
+                </a>
+            </li>  
+        </ul>  
+    </div>
+
+
+
+</body>

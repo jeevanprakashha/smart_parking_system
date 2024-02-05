@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<video class="video-slide" src = "/static/images/parkvid.mp4" autoplay muted loop></video>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Parking System Login</title>
+  <link rel="stylesheet" href="/static/css/register.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  
+</head>
+<body class="body">
+
+  <header>
+    <div class="title">
+      <h1>Star Parking lot</h1>
+    </div>
+
+    <div class="nav">
+      <div class="slider"></div>
+      <div class="nav-items">
+        <a href="#1" class="gap">Home</a>
+        <a href="#2" class="gap">About</a>
+        <a href="#3" class="gap">Service</a>
+        <a href="#4" class="gap">Contacts</a>
+        <a href="/public/login.html" class="gap">Login</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="register-box">
+    <h1>Register</h1>
+    <div class="content1">
+        <form action="" method="post">
+            <input type="text" id="Name" name="Name" required placeholder="Name" class="User1">
+            <input type="text" id="username" name="username" required placeholder="Username" class="User">
+            <input type="number" id="number" name="number" required placeholder="Number" class="User">
+            <input type="password" id="password" name="password" required placeholder="Password" class="pass1">
+            <button type="submit">Register</button>
+        </form>
+    </div>
+</div>
+
+<!-- Add any additional HTML content here -->
+
+{% for message in get_flashed_messages() %}
+    <div class="flash-message">{{ message }}</div>
+{% endfor %}
+
+
+</body>
+</html>

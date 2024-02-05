@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>User Account</title>
+    <link rel="stylesheet" href="/static/css/account.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+
+    <header>
+        <div class="title">
+            <h1>Star Parking lot</h1>
+        </div>
+
+        <div class="nav">
+            <div class="slider"></div>
+            <div class="nav-items">
+                <a href="/floor1">First Floor</a>
+                <a href="/floor2">Second Floor</a>
+                <a href="/floor3">Third Floor</a>
+            </div>
+        </div>
+    </header>
+
+    <video class="video-slide" autoplay muted loop>
+        <source src="/static/images/parkvid2.mp4" type="video/mp4">
+    </video>
+
+    <div class="content">
+        <h1>Cancel Bookings</h1>
+        <p>Booked Slots:</p>
+        <ul>
+            {% for slot in booked_slots %}
+                <li>
+                    Slot Number: {{ slot.slot_number }} - 
+                    Booked on: {{ slot.booking_time.strftime('%Y-%m-%d %H:%M:%S') }}
+                    <button onclick="cancelBooking('{{ slot.slot_number }}')">Cancel Booking</button>
+                </li>
+            {% endfor %}
+        </ul>
+        <a href="/index" class="back-button">Back to Dashboard</a>
+    </div>
+
+    <script>
+
+        function cancelBooking(slotNumber) {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    const latitude = position.coords.latitude;
+                    const longitude = position.coords.longitude;
+
+                    fetch('/cancel_booking', {
+                        method: 'POST',
+                        body: JSON.stringify({ slotNumber: slotNumber, latitude: latitude, longitude: longitude }),
+                        headers: { 'Content-Type': 'application/json' }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            alert(`Booking canceled successfully. Amount due: ₹${data.amount_due}`);
+                            window.location.href = `/amount?slot_number=${slotNumber}&amount_due=${data.amount_due}`;
+                        } else {
+                            alert("Error: " + data.message);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error canceling booking:', error);
+                        alert("An error occurred. Please try again.");
+                    });
+                }, function(error) {
+                    alert("Error: Unable to retrieve your location. " + error.message);
+                });
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+
+    </script>
+    
+
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vehicle Check</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        input#vehicle-number {
+            padding: 8px 15px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button#check-btn {
+            padding: 10px 20px;
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button#check-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <input id="vehicle-number" placeholder="Enter Vehicle Number" />
+
+      <button id="check-btn">Check</button>
+    </div>
+
+    <script>
+      document.getElementById("check-btn").addEventListener("click", (e) => {
+        var vehicle_number = document.getElementById("vehicle-number").value;
+
+        if(vehicle_number === "TN 14 AF 4141") {
+          alert("Not allowed");
+          return;
+        }
+
+        vehicle_number = vehicle_number.split(" ").join("");
+
+        var pattern = /^[A-Z]{2}[0-9]{2}[A-Z]{2}[0-9]{1,4}$/;
+        var result = pattern.test(vehicle_number);
+
+        if (result) alert("Can allow the vehicle");
+        else alert("Can not allow the vehicle");
+
+        console.log({ vehicle_number, result });
+      });
+    </script>
+  </body>
+</html>
